@@ -14,17 +14,10 @@ public class MyQueue {
         if (isQueueFull()) {
             System.out.println("Overflow! Unable to add element: " + item);
         } else {
-            if (tail == currentSize - 1) {
-                tail++;
-                queueArray[tail] = item;
-                currentSize++;
-                System.out.println("Element " + item + " is pushed to Queue!");
-            } else {
-                tail = currentSize;
-                queueArray[tail] = item;
-                currentSize++;
-                System.out.println("Element " + item + " is pushed to Queue!");
-            }
+            tail = currentSize;
+            queueArray[tail] = item;
+            System.out.println("Element " + item + " is pushed to Queue!");
+            currentSize++;
         }
     }
 
@@ -34,11 +27,7 @@ public class MyQueue {
         } else{
             System.out.println("Element " + queueArray[head] + " is remove to Queue");
             currentSize--;
-            if (!isQueueEmpty()) {
-                for (int index = 0; index < currentSize; index++) {
-                    queueArray[index] = queueArray[index + 1];
-                }
-            }
+            newQueue();
         }
     }
 
@@ -55,6 +44,14 @@ public class MyQueue {
             status = true;
         }
         return status;
+    }
+
+    private void newQueue() {
+        if (!isQueueEmpty()) {
+            for (int index = 0; index < currentSize; index++) {
+                queueArray[index] = queueArray[index + 1];
+            }
+        }
     }
 
 
